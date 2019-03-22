@@ -4,7 +4,7 @@ module.exports = {
     entry: './src/index.js',
     mode: 'production',
     devServer: {
-        publicPath: '/dist/'
+        contentBase: path.resolve(__dirname, 'dist')
     },
     output: {
 		path: path.resolve(__dirname, 'dist'),
