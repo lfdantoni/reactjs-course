@@ -3,8 +3,9 @@ const path = require('path');
 module.exports = {
     entry: './src/index.js',
     mode: 'production',
+    // watch: true, -> set webpack in mode 'watch' changes
     devServer: {
-        publicPath: '/dist/'
+        contentBase: path.resolve(__dirname, 'dist')
     },
     output: {
 		path: path.resolve(__dirname, 'dist'),
