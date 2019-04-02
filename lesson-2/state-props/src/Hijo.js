@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from "react";
+import styles from "./Hijo.css"; // CSS Stylesheet (from file)
 
 export default class Hijo extends Component {
     constructor(props) {
@@ -13,7 +14,7 @@ export default class Hijo extends Component {
     pedirPlata() {
         this.setState((state) =>
             ({
-                cantidad: state.cantidad - 1
+                cantidad: state.cantidad > 0 ? state.cantidad - 1 : 0
             }),
             this.avisarAPapa
         );
@@ -28,7 +29,7 @@ export default class Hijo extends Component {
 
     render() {
         return (<Fragment>
-            <h1>
+            <h1 className="title">
                 Hijo ${this.state.cantidad}
             </h1>
             <button onClick={this.pedirPlata}>Gastar plata</button>
