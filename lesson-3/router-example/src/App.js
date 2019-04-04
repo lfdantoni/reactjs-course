@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from 'react';
-// import './App.css';
+import React, { Component } from 'react';
+import './App.css';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import NewReleases from '@material-ui/icons/NewReleases';
 import {BrowserRouter, HashRouter, Link, NavLink, Route, Switch, Redirect} from 'react-router-dom';
