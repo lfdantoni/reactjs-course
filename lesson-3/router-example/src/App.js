@@ -49,14 +49,14 @@ export const Contacto = () => {
         <h1>Pagina de Contacto</h1>
       </Grid>
       
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField
           id="standard-name"
           label="Name"
           margin="normal"
         />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={12} sm={6}>
         <TextField
           id="standard-message"
           multiline
