@@ -1,8 +1,9 @@
 import React from 'react';
 import {render} from 'react-dom';
-import styles from './app.css';
+import Message from './components/Message';
+
 
 render(
-    <h1 className="title">TEST APP</h1>,
+    <Message text="test" />,
     document.getElementById('root')
 );
