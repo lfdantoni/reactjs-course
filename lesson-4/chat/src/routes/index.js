@@ -6,7 +6,9 @@ export const paths = {
     HOME: '/'
 }
 
-export default routes = [
-    { path: paths.SETTINGS, component: Settings },
-    { path: paths.HOME, component: Home }
+const routes = [
+    { path: paths.HOME, component: Home, title: 'Home', exact: true },
+    { path: paths.SETTINGS, component: Settings, title: 'Settings', exact: false }
 ]
+
+export default routes;
