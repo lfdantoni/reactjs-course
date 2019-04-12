@@ -2,7 +2,7 @@ import { createStore, combineReducers } from "redux";
 import {messages, settings, socket} from '../reducers';
 import {setSocket, receiveMessage, socketClosed} from '../actions';
 
-var HOST = 'ws://lfdantoni.herokuapp.com'; // location.origin.replace(/^http/, 'ws')
+var HOST = 'wss://lfdantoni.herokuapp.com'; // location.origin.replace(/^http/, 'ws')
 const ws = new WebSocket(HOST);
 
 const reducers = combineReducers({
