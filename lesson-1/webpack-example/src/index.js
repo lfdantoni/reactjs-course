@@ -1,5 +1,5 @@
 const func = () => {
-    console.log('t1');
+    console.log('t2');
 };
 
 func();
