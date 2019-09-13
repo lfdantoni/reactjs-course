@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './styles.css';
+import styles from './styles.module.css';
 
 export class State extends Component {
     state = {
@@ -7,6 +7,6 @@ export class State extends Component {
     }
 
     render() {
-        return <h2 className="title">State component: {this.state.myStateValue}</h2>
+        return <h2 className={styles.title}>State component: {this.state.myStateValue}</h2>
     }
 }
