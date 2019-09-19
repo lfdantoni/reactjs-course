@@ -8,10 +8,6 @@ const styles = {
   },
   link: {
     marginLeft: "20px"
-  },
-  animate: {
-    transition: 'margin .5s',
-    margin: '0 0 0 50px' 
   }
 }
 
