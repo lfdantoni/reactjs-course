@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+  - '8'
+before_script:
+  - yarn install
+before_deploy:
+  - yarn build
+deploy:
+  - provider: cloudfoundry
+    api: https://api.run.pivotal.io
+    username: fmirabile@solstice.com
+    password:
+      secure: JapPgny2we5kqYXTXmcYr5v1FIN7b0JcAhFOuNLXuIhw893VzAxp/sfjOGLRTT/W2jjk+rAn0lHqiHUI2i+f4iCMMzRZ/b7MlJNW9X0EZjzdp8lCDS9k/c48tXap+M6nBB2tjy3WzJVW73BHWzvlw7dPz7Ou0tQhKzxtvoskigPyRf9Wfp/Hjml4uEwcLjno0XnOxvXirk7ijPTtrRQQ4sgjQNPbqAMOcfASOI2Kh9Dsv+gVHyXFkc3rP+kZqp9jWDvVrJD7teaLAiAhyc5MN3rb02bhCgVmvgn0GFo3kkkMCsxCZ00jE10chpWOFSK6gO5o80Li2nBhJjUNJ+26FgQAshbg9AZGFADHb6+Q9ztcLTD65dYE2d5zfx/pmZaZoFL4j4tHGKYmZLxwfl8+NFMpqJPdS/3ry25siv0akJJUsXU+lSuO2NC3kTunl8ResVaMyI8WQGM5XwXlEGHFLj+9MJj55VU0y/TDLO1A7OdfgMjig8R387Fvy06c3TqQYJAu+UgXh69KDG82kXX6G7PT5y4zXUUFHjgNYaewIR40r5SMEdwkvOCYcEDJDKxymI1UAcrsyeRC8EirTlI2LC2MjP1bIRQBMJS3SdyeOzTd0i6R9rZfhGOHexCmQBWyZhYM+It/l3igYnf9sdclGhkWxOOS/wLSf/mU/D5DTT8=
+    organization: solstice-org
+    space: fmirabile-cnt
+    on:
+      repo: fpmirabile/puppeteer
+      branch: master
