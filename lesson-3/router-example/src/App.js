@@ -25,8 +25,9 @@ function App() {
       <NavLink to="/login" style={styles.link} activeStyle={styles.active}>Login</NavLink> {/* that allows to add an active style */}
       <NavLink to="/noticias" style={styles.link} activeStyle={styles.active}>Noticias</NavLink>
       <NavLink to="/redirect" style={styles.link} activeStyle={styles.active}>Redirect</NavLink>
+      <NavLink to="/withParam" exact style={styles.link} activeStyle={styles.active}>Without Param</NavLink> {/* Add exact prop to avoid activeStyle in the '/withParam/lfdantoni' path   */}
       <NavLink to="/withParam/lfdantoni" style={styles.link} activeStyle={styles.active}>With Param</NavLink>
-      <NavLink to="/noMatch" style={styles.link} activeStyle={styles.active}>No Match</NavLink>
+      <NavLink to="/asdwer" style={styles.link} activeStyle={styles.active}>No Match</NavLink>
 
       <Switch> {/* this allows to put a default component */}
         <Route path="/contacto" component={Contacto} /> {/* that component will load a component to a specific path */}
@@ -36,7 +37,7 @@ function App() {
         <Route path="/withParam" exact component={WithoutParam} /> {/* exact avoid to show that route for /withParam/:user path*/}
         <Route path="/withParam/:user" component={WithParam} />
         <Route path="/" exact component={Home} /> {/* exact avoid to show that route for the other paths */}
-        <Route component={NoMatch} /> {/* this component represent the dafault one */}
+        <Route component={NoMatch} /> {/* this component represent the dafault one, it should be before the Switch finished */}
       </Switch>
     </HashRouter>
     // </BrowserRouter> {/* routes are like mipage.com/login */}
