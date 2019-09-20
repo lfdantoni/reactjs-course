@@ -25,8 +25,9 @@ function App() {
       <NavLink to="/login" style={styles.link} activeStyle={styles.active}>Login</NavLink> {/* that allows to add an active style */}
       <NavLink to="/noticias" style={styles.link} activeStyle={styles.active}>Noticias</NavLink>
       <NavLink to="/redirect" style={styles.link} activeStyle={styles.active}>Redirect</NavLink>
+      <NavLink to="/withParam" style={styles.link} activeStyle={styles.active}>Without Param</NavLink>
       <NavLink to="/withParam/lfdantoni" style={styles.link} activeStyle={styles.active}>With Param</NavLink>
-      <NavLink to="/noMatch" style={styles.link} activeStyle={styles.active}>No Match</NavLink>
+      <NavLink to="/asdwer" style={styles.link} activeStyle={styles.active}>No Match</NavLink>
 
       <Switch> {/* this allows to put a default component */}
         <Route path="/contacto" component={Contacto} /> {/* that component will load a component to a specific path */}
