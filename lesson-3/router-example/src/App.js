@@ -72,14 +72,6 @@ export const WithParam = ({match, location, history}) => {
   return <h1>With param {match.params.user}</h1>
 }
 
-export const ChildrenProp = ({match}) => {
-  return <h1 style={match ? styles.animate : {marginLeft: 0}}>Pagina de Children Prop</h1>
-}
-
-export const RenderProp = ({match}) => {
-  return <h1> Pagina de Render Prop</h1>
-}
-
 export const NoMatch = () => {
   return <h1>NoMatch!</h1>
 }
