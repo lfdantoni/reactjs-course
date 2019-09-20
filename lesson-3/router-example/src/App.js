@@ -37,7 +37,7 @@ function App() {
         <Route path="/withParam" exact component={WithoutParam} /> {/* exact avoid to show that route for /withParam/:user path*/}
         <Route path="/withParam/:user" component={WithParam} />
         <Route path="/" exact component={Home} /> {/* exact avoid to show that route for the other paths */}
-        <Route component={NoMatch} /> {/* this component represent the dafault one */}
+        <Route component={NoMatch} /> {/* this component represent the dafault one, it should be before the Switch finished */}
       </Switch>
     </HashRouter>
     // </BrowserRouter> {/* routes are like mipage.com/login */}
