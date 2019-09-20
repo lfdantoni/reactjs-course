@@ -25,7 +25,7 @@ function App() {
       <NavLink to="/login" style={styles.link} activeStyle={styles.active}>Login</NavLink> {/* that allows to add an active style */}
       <NavLink to="/noticias" style={styles.link} activeStyle={styles.active}>Noticias</NavLink>
       <NavLink to="/redirect" style={styles.link} activeStyle={styles.active}>Redirect</NavLink>
-      <NavLink to="/withParam" style={styles.link} activeStyle={styles.active}>Without Param</NavLink>
+      <NavLink to="/withParam" exact style={styles.link} activeStyle={styles.active}>Without Param</NavLink> {/* Add exact prop to avoid activeStyle in the '/withParam/lfdantoni' path   */}
       <NavLink to="/withParam/lfdantoni" style={styles.link} activeStyle={styles.active}>With Param</NavLink>
       <NavLink to="/asdwer" style={styles.link} activeStyle={styles.active}>No Match</NavLink>
 
