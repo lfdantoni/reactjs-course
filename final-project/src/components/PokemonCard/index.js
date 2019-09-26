@@ -24,7 +24,7 @@ export default class PokemonCard extends React.Component {
     const pIdStr = '000'.substring(0, 3 - idStr.length) + idStr
 
     return (
-      <Link to={`/${this.props.data.id}`}>
+      <Link to={`/${this.props.data.id}`} style={{textDecoration: 'none'}}>
         <Card style={useStyles.card}>
           <CardActionArea>
             <CardMedia
