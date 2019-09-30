@@ -7,17 +7,22 @@ export default class Search extends React.Component {
   }
 
   handleChange = (event) => {
-    this.setState(
-      {value: event.target.value},
-      () => this.props.onChange(this.state.value));
+    this.setState({value: event.target.value});
+  }
+
+  handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      this.props.onChange(this.state.value);
+    } 
   }
 
   render() {
     return  <TextField
       id="pokemon-search"
-      label="Search by id or name"
+      label="Search the pokemon by id or name"
       value={this.state.name}
       onChange={this.handleChange}
+      onKeyDown={this.handleKeyDown}
       margin="normal"
       style={this.props.style}
     />
