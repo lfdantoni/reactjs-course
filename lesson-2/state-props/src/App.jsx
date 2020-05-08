@@ -7,8 +7,8 @@ import { State } from './components/State';
 function App() {
   return (
     <Fragment>
-      <Prop title="prop test"></Prop>
-      <State></State>
+      <Prop title="prop test" />
+      <State />
     </Fragment>
   );
 }
