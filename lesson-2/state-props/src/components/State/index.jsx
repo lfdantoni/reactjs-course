@@ -1,6 +1,13 @@
-import React, {Component, PureComponent} from 'react';
+import React, {Component, PureComponent, Fragment} from 'react';
 import styles from './styles.module.css';
 import {StateChild} from './StateChild'
+
+const inlineStyles = {
+  counter: {
+    color: 'blue',
+    fontSize: '25px'
+  }
+}
 
 // Use the following line in order to avoid unnecessary re-renders
 // export class State extends PureComponent {
@@ -8,7 +15,8 @@ export class State extends PureComponent {
   state = {
     myStateValue: 'test value',
     counter: 0,
-    input: ''
+    input: '',
+    array: ['red', 'blue', 'yellow', 'green']
   }
 
   needMoney = (count) => {
@@ -36,15 +44,19 @@ export class State extends PureComponent {
   render() {
     console.log('State render executed!');
     
-    return <h2 className={styles.title}>
-      State component: {this.state.myStateValue}
+    return <Fragment>
+      <h2 className={styles.title}> State component: {this.state.myStateValue} </h2>
       <br/>
-      Counter: {this.state.counter}
+      <h3 style={inlineStyles.counter}>Counter: {this.state.counter}</h3>
       <br/>
       <StateChild callback={this.needMoney} />
       <br/>
       <input type="text" value={this.state.input} onChange={this.handleChange}/>
-    </h2>
+      <br/>
+      {this.state.array.map((color, index) => {
+        return <div style={{color}} key={index}>{color}</div>
+      })}
+    </Fragment>
   }
 
   /**
