@@ -7,7 +7,8 @@ import {StateChild} from './StateChild'
 export class State extends PureComponent {
   state = {
     myStateValue: 'test value',
-    counter: 0
+    counter: 0,
+    input: ''
   }
 
   needMoney = (count) => {
@@ -28,6 +29,10 @@ export class State extends PureComponent {
     // });
   }
 
+  handleChange = (event) => {
+    this.setState({input: event.target.value})
+  }
+
   render() {
     console.log('State render executed!');
     
@@ -37,6 +42,8 @@ export class State extends PureComponent {
       Counter: {this.state.counter}
       <br/>
       <StateChild callback={this.needMoney} />
+      <br/>
+      <input type="text" value={this.state.input} onChange={this.handleChange}/>
     </h2>
   }
 
