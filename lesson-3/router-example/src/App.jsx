@@ -17,7 +17,7 @@ function App() {
     {/* <HashRouter> routes are like mypage.com/#/login */}
       <ul>
         <ListItemLink to="/login" />
-        <ListItemLink to="/News" />
+        <ListItemLink to="/news" />
       </ul>
 
       <Link to="/contact">Contact</Link> {/* that represents a simple link */}
@@ -79,6 +79,7 @@ export const RedirectToHome = () => {
  */
 export const WithoutParam = ({match, location, history}) => {
   console.log(location.state)
+  console.log(history)
   return <h1>Without param {match.params.user} and state: {JSON.stringify(location.state)}</h1>
 }
 
@@ -98,7 +99,7 @@ export const NoMatch = () => {
  */
 export const ListItemLink = ({ to, ...rest }) => (
   /* children allows to pass some props to the route component and not re-mount a function component and re-render for each path change */
-  /* This allows you to dynamically adjust your UI based on whether or not the route matches. */
+  /* This allows you to dynamically adjust your UI based on whether or not the route matches. It will render whether the path matches or not. */
 
   /* If we use render instead of children prop, it will only render when match the path */
   /* change to render prop and seeing what happens when change the links */
@@ -106,7 +107,7 @@ export const ListItemLink = ({ to, ...rest }) => (
     path={to}
     children={({ match }) => (
       <li style={match ? styles.active : null}>
-        <h3>{to}</h3>
+        <h3 style={{transition: "color 1s", color: match ? "red" : 'black'}}>{to}</h3>
       </li>
     )}
   />
