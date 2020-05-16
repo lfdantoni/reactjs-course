@@ -1,4 +1,5 @@
 import React from 'react';
+import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
 import './App.css';
 import mock from './mock_data';
 import Menu from './components/Menu';
@@ -7,6 +8,9 @@ import Content from './components/Content';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline, Grid, Container } from '@material-ui/core';
 import { PureComponent } from 'react';
+import MyMemes from './components/MyMemes';
+import CreateMeme from './components/CreateMeme';
+import MemeList from './components/MemeList';
 
 const theme = createMuiTheme({
   palette: {
@@ -15,39 +19,35 @@ const theme = createMuiTheme({
 });
 
 export default class App extends PureComponent {
-  defaultMenuId = "memes";
-
-  state = {
-    activeMenu: this.defaultMenuId
-  }
-  
-  menuChanged = (menuId) => {
-    console.log('Menu changed: ' + menuId);
-
-    this.setState({activeMenu: menuId});
-  }
 
   render() {
     return (
-      <ThemeProvider theme={theme}>
-        <CssBaseline /> {/** this is to apply the correct theme color */}
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <CssBaseline /> {/** this is to apply the correct theme color */}
 
-        <Container maxWidth={false}>
+          <Container maxWidth={false}>
 
-          <Grid container spacing={2} direction="column">
-            <Grid item>
-              <Header />
+            <Grid container spacing={2} direction="column">
+              <Grid item>
+                <Header />
+              </Grid>
+              <Grid item>
+                <Menu />
+              </Grid>
+              <Grid item>
+                <Switch>
+                  <Route path="/memes" component={MemeList}/>
+                  <Route path={["/create-meme/:id", "/create-meme"]} component={CreateMeme}/>
+                  <Route path="/my-memes" component={MyMemes}/>
+                  <Route strict path="/" render={() => <Redirect to="/memes"/>}/>
+                </Switch>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Menu menuChange={this.menuChanged} defaultMenuId={this.defaultMenuId} />
-            </Grid>
-            <Grid item>
-              <Content menuSelected={this.state.activeMenu}/>
-            </Grid>
-          </Grid>
 
-        </Container>
-      </ThemeProvider>
+          </Container>
+        </ThemeProvider>
+      </BrowserRouter>
     );
   }
 }

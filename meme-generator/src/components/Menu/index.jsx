@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react'
-import { Button, Icon, Grid, Paper } from '@material-ui/core';
+import { Button, Icon, Grid, Paper, withTheme } from '@material-ui/core';
 import styles from './styles.module.css';
+import { Redirect } from 'react-router';
+import { NavLink } from 'react-router-dom';
 
 
 /**
@@ -9,7 +11,7 @@ import styles from './styles.module.css';
  * Material UI Icons: https://material-ui.com/components/icons/
  */
 
-export default class Menu extends PureComponent {
+class Menu extends PureComponent {
 
   constructor(props) {
     super(props);
@@ -20,23 +22,25 @@ export default class Menu extends PureComponent {
       {id: 'my-memes', label: 'My Memes', icon: 'perm_identity'}
     ];
 
-    const defaultMenuId = this.props.defaultMenuId || 'memes';
+    this.activeLinkStyle = {
+      color: this.props.theme.palette.secondary.light
+    }
 
-    this.state = {
-      activeMenu: this.menuItems.find(item => item.id === defaultMenuId)
+    this.linkStyle = {
+      color: this.props.theme.palette.text.primary
     }
   }
 
   menuClick = (menuItem) => {
-    if(this.props.menuChange && this.state.activeMenu.id !== menuItem.id) {
-      this.props.menuChange(menuItem.id);
-    }
+    // if(this.props.menuChange && this.state.activeMenu.id !== menuItem.id) {
+    //   this.props.menuChange(menuItem.id);
+    // }
 
-    this.setState({activeMenu: menuItem});
+    // this.setState({activeMenu: menuItem});
   }
 
   getButtonColor = (menuItem) => {
-    return menuItem.id === this.state.activeMenu.id ? 'secondary' : 'primary';
+    // return menuItem.id === this.state.activeMenu.id ? 'secondary' : 'primary';
   }
 
   render() {
@@ -44,34 +48,57 @@ export default class Menu extends PureComponent {
       <Paper elevation={3}>
         <Grid container spacing={3} justify="center" className={styles.grid}>
           <Grid item xs={3} className={styles.column}>
-            <Button
+            <NavLink to={"/" + this.menuItems[0].id}
+              style={this.linkStyle}
+              activeStyle={this.activeLinkStyle}>
+
+              {this.menuItems[0].label}
+              {<Icon className={styles['button-icon']}> {this.menuItems[0].icon} </Icon>}
+            </NavLink>
+            {/* <Button
               variant="contained"
               color={this.getButtonColor(this.menuItems[0])}
               onClick={() => this.menuClick(this.menuItems[0])}
               endIcon={<Icon className={styles['button-icon']}> {this.menuItems[0].icon} </Icon>}
             > {this.menuItems[0].label}
-            </Button>
+            </Button> */}
           </Grid>
           <Grid item xs={3} className={styles.column}>
-            <Button
+            <NavLink to={"/" + this.menuItems[1].id}
+              style={this.linkStyle}
+              activeStyle={this.activeLinkStyle}>
+
+              {this.menuItems[1].label}
+              {<Icon className={styles['button-icon']}> {this.menuItems[1].icon} </Icon>}
+            </NavLink>
+            {/* <Button
               variant="contained"
               color={this.getButtonColor(this.menuItems[1])}
               onClick={() => this.menuClick(this.menuItems[1])}
               endIcon={<Icon className={styles['button-icon']}>{this.menuItems[1].icon}</Icon>}
             > {this.menuItems[1].label}
-            </Button>
+            </Button> */}
           </Grid>
           <Grid item xs={3} className={styles.column}>
-          <Button
+            <NavLink to={"/" + this.menuItems[2].id}
+              style={this.linkStyle}
+              activeStyle={this.activeLinkStyle}>
+
+              {this.menuItems[2].label}
+              {<Icon className={styles['button-icon']}> {this.menuItems[2].icon} </Icon>}
+            </NavLink>
+            {/* <Button
               variant="contained"
               color={this.getButtonColor(this.menuItems[2])}
               onClick={() => this.menuClick(this.menuItems[2])}
               endIcon={<Icon className={styles['button-icon']}>{this.menuItems[2].icon}</Icon>}
             > {this.menuItems[2].label}
-            </Button>
+            </Button> */}
           </Grid>
         </Grid>
       </Paper>
     )
   }
 }
+
+export default withTheme(Menu);
