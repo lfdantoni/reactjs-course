@@ -1,10 +1,8 @@
 import React from 'react';
 import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
 import './App.css';
-import mock from './mock_data';
 import Menu from './components/Menu';
 import Header from './components/Header';
-import Content from './components/Content';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { CssBaseline, Grid, Container } from '@material-ui/core';
 import { PureComponent } from 'react';

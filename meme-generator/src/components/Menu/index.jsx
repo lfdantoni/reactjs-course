@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
-import { Button, Icon, Grid, Paper, withTheme } from '@material-ui/core';
+import { Icon, Grid, Paper, withTheme } from '@material-ui/core';
 import styles from './styles.module.css';
-import { Redirect } from 'react-router';
 import { NavLink } from 'react-router-dom';
 
 
@@ -31,18 +30,6 @@ class Menu extends PureComponent {
     }
   }
 
-  menuClick = (menuItem) => {
-    // if(this.props.menuChange && this.state.activeMenu.id !== menuItem.id) {
-    //   this.props.menuChange(menuItem.id);
-    // }
-
-    // this.setState({activeMenu: menuItem});
-  }
-
-  getButtonColor = (menuItem) => {
-    // return menuItem.id === this.state.activeMenu.id ? 'secondary' : 'primary';
-  }
-
   render() {
     return (
       <Paper elevation={3}>
@@ -55,13 +42,6 @@ class Menu extends PureComponent {
               {this.menuItems[0].label}
               {<Icon className={styles['button-icon']}> {this.menuItems[0].icon} </Icon>}
             </NavLink>
-            {/* <Button
-              variant="contained"
-              color={this.getButtonColor(this.menuItems[0])}
-              onClick={() => this.menuClick(this.menuItems[0])}
-              endIcon={<Icon className={styles['button-icon']}> {this.menuItems[0].icon} </Icon>}
-            > {this.menuItems[0].label}
-            </Button> */}
           </Grid>
           <Grid item xs={3} className={styles.column}>
             <NavLink to={"/" + this.menuItems[1].id}
@@ -71,13 +51,6 @@ class Menu extends PureComponent {
               {this.menuItems[1].label}
               {<Icon className={styles['button-icon']}> {this.menuItems[1].icon} </Icon>}
             </NavLink>
-            {/* <Button
-              variant="contained"
-              color={this.getButtonColor(this.menuItems[1])}
-              onClick={() => this.menuClick(this.menuItems[1])}
-              endIcon={<Icon className={styles['button-icon']}>{this.menuItems[1].icon}</Icon>}
-            > {this.menuItems[1].label}
-            </Button> */}
           </Grid>
           <Grid item xs={3} className={styles.column}>
             <NavLink to={"/" + this.menuItems[2].id}
@@ -87,13 +60,6 @@ class Menu extends PureComponent {
               {this.menuItems[2].label}
               {<Icon className={styles['button-icon']}> {this.menuItems[2].icon} </Icon>}
             </NavLink>
-            {/* <Button
-              variant="contained"
-              color={this.getButtonColor(this.menuItems[2])}
-              onClick={() => this.menuClick(this.menuItems[2])}
-              endIcon={<Icon className={styles['button-icon']}>{this.menuItems[2].icon}</Icon>}
-            > {this.menuItems[2].label}
-            </Button> */}
           </Grid>
         </Grid>
       </Paper>
