@@ -9,6 +9,8 @@ import { PureComponent } from 'react';
 import MyMemes from './components/MyMemes';
 import CreateMeme from './components/CreateMeme';
 import MemeList from './components/MemeList';
+import { Provider } from 'react-redux';
+import {store} from './store';
 
 const theme = createMuiTheme({
   palette: {
@@ -20,32 +22,34 @@ export default class App extends PureComponent {
 
   render() {
     return (
-      <BrowserRouter>
-        <ThemeProvider theme={theme}>
-          <CssBaseline /> {/** this is to apply the correct theme color */}
+      <Provider store={store}>
+        <BrowserRouter>
+          <ThemeProvider theme={theme}>
+            <CssBaseline /> {/** this is to apply the correct theme color */}
 
-          <Container maxWidth={false}>
+            <Container maxWidth={false}>
 
-            <Grid container spacing={2} direction="column">
-              <Grid item>
-                <Header />
+              <Grid container spacing={2} direction="column">
+                <Grid item>
+                  <Header />
+                </Grid>
+                <Grid item>
+                  <Menu />
+                </Grid>
+                <Grid item>
+                  <Switch>
+                    <Route path="/memes" component={MemeList}/>
+                    <Route path={["/create-meme/:id", "/create-meme"]} component={CreateMeme}/>
+                    <Route path="/my-memes" component={MyMemes}/>
+                    <Route strict path="/" render={() => <Redirect to="/memes"/>}/>
+                  </Switch>
+                </Grid>
               </Grid>
-              <Grid item>
-                <Menu />
-              </Grid>
-              <Grid item>
-                <Switch>
-                  <Route path="/memes" component={MemeList}/>
-                  <Route path={["/create-meme/:id", "/create-meme"]} component={CreateMeme}/>
-                  <Route path="/my-memes" component={MyMemes}/>
-                  <Route strict path="/" render={() => <Redirect to="/memes"/>}/>
-                </Switch>
-              </Grid>
-            </Grid>
 
-          </Container>
-        </ThemeProvider>
-      </BrowserRouter>
+            </Container>
+          </ThemeProvider>
+        </BrowserRouter>
+      </Provider>
     );
   }
 }

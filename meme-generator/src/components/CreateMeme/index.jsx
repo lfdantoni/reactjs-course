@@ -1,13 +1,18 @@
 import React, { PureComponent, Fragment } from 'react';
 import { Grid, TextField, Button } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import styles from './styles.module.css';
 import dataMock from '../../mock_data';
+import { setSelectedMeme } from '../../actions/memes';
+import { connect } from 'react-redux';
+import { addMeme } from '../../actions/user';
+import mock_data from '../../mock_data';
 
-export default class CreateMeme extends PureComponent {
+class CreateMeme extends PureComponent {
   state = {
     text1: '',
-    text2: ''
+    text2: '',
+    redirectToList: false
   }
 
   getSelectMemeView = () => {
@@ -17,13 +22,19 @@ export default class CreateMeme extends PureComponent {
   }
 
   createMeme = () => {
-    console.log("Create Meme");
+    this.props.createMeme( `memeUrl-${new Date().getTime()}-${this.props.meme.id}`);
+
+    this.setState({redirectToList: true})
   }
 
   getCreateMemeView = () => {
-    const meme = dataMock.data.memes.find(m => m.id === this.props.match.params.id.toString());
+    const {meme} = this.props;
 
-    return <Fragment>
+    return this.state.redirectToList ?  <Redirect to="/my-memes" /> :
+    
+    !meme ? <h2> Loading... </h2> :
+
+    <Fragment>
       <Grid item xs={5} className={styles["input-wrapper"]}>
         <TextField
           id="text1"
@@ -49,6 +60,15 @@ export default class CreateMeme extends PureComponent {
     </Fragment>
   }
 
+  componentDidMount() {
+    const {id} = this.props.match.params;
+
+    if (id) {
+      const meme = mock_data.data.memes.find(m => m.id === id.toString());
+      this.props.setSelectedMeme(meme);
+    }
+  }
+
   render() {
     return (
       <Grid container spacing={2}>
@@ -57,3 +77,18 @@ export default class CreateMeme extends PureComponent {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    meme: state.memes.selectedMeme
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setSelectedMeme: (meme) => { dispatch(setSelectedMeme(meme)) },
+    createMeme: (memeUrl) => { dispatch(addMeme(memeUrl)) }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreateMeme);
