@@ -1,13 +1,18 @@
 import React, { PureComponent } from 'react';
 import { Grid } from '@material-ui/core';
-import mockData from '../../mock_data';
 import { Link } from 'react-router-dom';
 import { listMemes } from '../../actions/memes';
 import { connect } from 'react-redux';
+import * as memesApi from '../../apis/memes.api';
 
 class MemeList extends PureComponent {
   componentDidMount() {
-    this.props.listMemes(mockData.data.memes);
+    memesApi.getMeme()
+      .then(data => {
+        this.props.listMemes(data.data.memes);
+      })
+
+    // this.props.listMemes(mockData.data.memes);
   }
 
   getLoadingView() {

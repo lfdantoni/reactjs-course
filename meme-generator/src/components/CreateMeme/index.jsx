@@ -2,17 +2,17 @@ import React, { PureComponent, Fragment } from 'react';
 import { Grid, TextField, Button } from '@material-ui/core';
 import { Link, Redirect } from 'react-router-dom';
 import styles from './styles.module.css';
-import dataMock from '../../mock_data';
 import { setSelectedMeme } from '../../actions/memes';
 import { connect } from 'react-redux';
 import { addMeme } from '../../actions/user';
-import mock_data from '../../mock_data';
+import * as memesApi from '../../apis/memes.api';
 
 class CreateMeme extends PureComponent {
   state = {
     text1: '',
     text2: '',
-    redirectToList: false
+    redirectToList: false,
+    isCreating: false
   }
 
   getSelectMemeView = () => {
@@ -22,9 +22,14 @@ class CreateMeme extends PureComponent {
   }
 
   createMeme = () => {
-    this.props.createMeme( `memeUrl-${new Date().getTime()}-${this.props.meme.id}`);
+    this.setState({isCreating: true});
 
-    this.setState({redirectToList: true})
+    memesApi.createMeme(this.props.meme.id, this.state.text1, this.state.text2)
+      .then(data => {
+        console.log(data);
+        this.props.createMeme(data.data.url);
+        this.setState({redirectToList: true})
+      })
   }
 
   getCreateMemeView = () => {
@@ -33,6 +38,8 @@ class CreateMeme extends PureComponent {
     return this.state.redirectToList ?  <Redirect to="/my-memes" /> :
     
     !meme ? <h2> Loading... </h2> :
+
+    this.state.isCreating ? <h2> Creating... </h2> :
 
     <Fragment>
       <Grid item xs={5} className={styles["input-wrapper"]}>
@@ -64,8 +71,12 @@ class CreateMeme extends PureComponent {
     const {id} = this.props.match.params;
 
     if (id) {
-      const meme = mock_data.data.memes.find(m => m.id === id.toString());
-      this.props.setSelectedMeme(meme);
+      // because there is no get meme by id endpoint
+      memesApi.getMeme()
+        .then(data => {
+          const meme = data.data.memes.find(m => m.id === id.toString());
+          this.props.setSelectedMeme(meme);
+        })
     }
   }
 
