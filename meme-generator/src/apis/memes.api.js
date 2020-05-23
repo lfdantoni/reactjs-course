@@ -5,6 +5,15 @@ export const getMeme = () => {
     .then(response => response.json());
 }
 
+export const getMemeById = (id) => {
+  return fetch(MEMES_URL + 'get_memes')
+    .then(response => response.json())
+    .then(data => {
+      const meme = data.data.memes.find(m => m.id === id.toString());
+      return Promise.resolve(meme);
+    });
+}
+
 export const createMeme = (id, text1, text2) => {
   const formData = new FormData();
 
@@ -16,10 +25,10 @@ export const createMeme = (id, text1, text2) => {
   formData.append('text1', text2);
 
   return fetch(
-      MEMES_URL + 'caption_image',
-      {
-        method: 'POST',
-        body: formData
-      })
-    .then(response => response.json());
+    MEMES_URL + 'caption_image',
+    {
+      method: 'POST',
+      body: formData
+    })
+  .then(response => response.json());
 }

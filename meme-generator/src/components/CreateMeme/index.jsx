@@ -72,9 +72,8 @@ class CreateMeme extends PureComponent {
 
     if (id) {
       // because there is no get meme by id endpoint
-      memesApi.getMeme()
-        .then(data => {
-          const meme = data.data.memes.find(m => m.id === id.toString());
+      memesApi.getMemeById(id)
+        .then(meme => {
           this.props.setSelectedMeme(meme);
         })
     }
