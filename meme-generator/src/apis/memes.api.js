@@ -6,6 +6,7 @@ export const getMeme = () => {
 }
 
 export const getMemeById = (id) => {
+  // because there is no get meme by id endpoint
   return fetch(MEMES_URL + 'get_memes')
     .then(response => response.json())
     .then(data => {
