@@ -1,0 +1,127 @@
+/*
+From https://codepen.io/joshuaward/pen/robbMx
+*/
+
+@charset "UTF-8";
+*, *:before, *:after {
+  box-sizing: border-box;
+  outline: none;
+}
+
+.card-link {
+  text-decoration: none;
+}
+
+.card-figure {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 290px;
+  height: 395px;
+  padding: 20px 20px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden;
+}
+
+.card-figure:before, .card-figure:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card-figure:before {
+  content: '';
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 0;
+}
+
+.card-figure:after {
+  content: '';
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden;
+}
+
+.card-figure:hover {
+  background-size: 175%;
+}
+
+.card-figure:hover:after {
+  content: '♣';
+  background-color: rgba(241, 196, 15, 0.9);
+  color: white;
+  font-size: 72px;
+  z-index: 2;
+}
+
+.card-figure:hover .date {
+  bottom: -59px;
+}
+
+.card-figure:hover figcaption {
+  transform: translateY(-110%);
+}
+
+.card-figure .date {
+  position: absolute;
+  bottom: 0;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+  background-color: rgba(241, 196, 15, 0.8);
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.7);
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.card-figure .date span {
+  color: white;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.card-figure .date span:first-child {
+  font-family: "Source Code Pro", sans-serif;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.card-figure .date span:last-child {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.card-figure figcaption {
+  color: white;
+  transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 1;
+}
+
+.card-figure figcaption h4 {
+  margin: 0 0 5px;
+  font-family: "Source Code Pro", sans-serif;
+  font-size: 24px;
+  line-height: 1.35;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.7);
+}
+
+.card-figure figcaption h4 > span {
+  background-color: rgba(241, 196, 15, 0.8);
+}
+
+.card-figure figcaption p {
+  margin: 0;
+  line-height: 1.5;
+}
