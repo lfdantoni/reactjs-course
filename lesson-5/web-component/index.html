@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- using my web component -->
+  <my-button label="Button Click" as-atom/>
+
+
+
+
+
+
+  <script type="text/javascript">
+    const template = document.createElement('template');
+ 
+    template.innerHTML = `
+      <style>
+        .container {
+          padding: 8px;
+        }
+      
+        button {
+          display: block;
+          overflow: hidden;
+          position: relative;
+          padding: 0 16px;
+          font-size: 16px;
+          font-weight: bold;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          cursor: pointer;
+          outline: none;
+      
+          width: 100%;
+          height: 40px;
+      
+          box-sizing: border-box;
+          border: 1px solid #a1a1a1;
+          background: #ffffff;
+          box-shadow: 0 2px 4px 0 rgba(0,0,0, 0.05), 0 2px 8px 0 rgba(161,161,161, 0.4);
+          color: #363636;
+          cursor: pointer;
+        }
+      </style>
+      
+      <div class="container">
+        <button>Label</button>
+      </div>
+    `;
+
+    class Button extends HTMLElement {
+      constructor() {
+        super();
+    
+        this._shadowRoot = this.attachShadow({ mode: 'open' });
+        this._shadowRoot.appendChild(template.content.cloneNode(true));
+
+        this.$container = this._shadowRoot.querySelector('.container');
+        // get the button element
+        this.$button = this._shadowRoot.querySelector('button');
+
+        // add button click event
+        /**
+          document
+            .querySelector('my-button')
+            .addEventListener('onClick', value => console.log(value));
+        */
+        this.$button.addEventListener('click', (e) => {
+          // it will able to offer this event as API for being used on libraries as React
+          this.dispatchEvent(
+            new CustomEvent('onClick', {
+              detail: 'Hello from within the Custom Element',
+            })
+          );
+        });
+      }
+
+      get label() {
+        return this.getAttribute('label');
+      }
+
+      // to manage set label attribute by js
+      set label(value) {
+        this.setAttribute('label', value);
+      }
+
+      // observe web component attributes
+      static get observedAttributes() {
+        return ['label'];
+      }
+    
+      // handle attribute changes
+      // it will only call when the attribute is set by html ->  <my-button label="Button Click" />
+      // it won't work for " document.querySelector('my-button').label = 'My Button' "
+      attributeChangedCallback(name, oldVal, newVal) {
+        console.log(name)
+        // this[name] = newVal;
+        this.render();
+      }
+
+      render() {
+        this.$button.innerHTML = this.label;
+      }
+
+      // it is gonna called once when the component has been mounted
+      connectedCallback() {
+        if (this.hasAttribute('as-atom')) {
+          this.$container.style.padding = '0px';
+        }
+      }
+    }
+    
+    window.customElements.define('my-button', Button);
+  </script>
+</body>
+</html>
