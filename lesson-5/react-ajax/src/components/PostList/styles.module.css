@@ -4,3 +4,9 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.create-post {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
