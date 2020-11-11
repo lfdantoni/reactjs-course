@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Container} from './layout/Container';
 import './index.css';
-import App from './App';
 
 ReactDOM.render(
-  <App />,
+  <Container />,
   document.getElementById('root')
 );
 
