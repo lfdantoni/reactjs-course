@@ -9,10 +9,9 @@ export const Container = () => {
     <Fragment>
       <Header/>
       
-      <div className="content">
-        Content
+      <Container maxWidth="sm">
         <BookList />
-      </div>
+      </Container>
 
       <Footer/>
     </Fragment>
