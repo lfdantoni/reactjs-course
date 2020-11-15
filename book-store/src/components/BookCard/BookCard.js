@@ -6,9 +6,8 @@ import Card from '@material-ui/core/Card'
 import CardHeader from '@material-ui/core/CardHeader'
 import Avatar from '@material-ui/core/Avatar'
 import IconButton from '@material-ui/core/IconButton'
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
@@ -28,11 +27,6 @@ export const BookCard = ({book, className}) => {
             {book.title[0]}
           </Avatar>
         }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
         title={book.title}
         subheader={toPascalCase(book.author)}
       />
@@ -51,7 +45,7 @@ export const BookCard = ({book, className}) => {
           <FavoriteIcon />
         </IconButton>
         <IconButton aria-label="share">
-          <ShareIcon />
+          <ShoppingCartIcon />
         </IconButton>
       </CardActions>
     </Card>
