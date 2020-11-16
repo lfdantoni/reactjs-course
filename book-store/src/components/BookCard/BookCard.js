@@ -17,7 +17,7 @@ import { toPascalCase } from '../../utils/strings'
 import './book-card.css';
 
 
-export const BookCard = ({book, className}) => {
+export const BookCard = ({book, className, onCartClick}) => {
 
   return (
     <Card className={`book-card ${className}`}>
@@ -44,7 +44,7 @@ export const BookCard = ({book, className}) => {
         <IconButton aria-label="add to favorites">
           <FavoriteIcon />
         </IconButton>
-        <IconButton aria-label="share">
+        <IconButton aria-label="share" onClick={() => onCartClick(book)}>
           <ShoppingCartIcon />
         </IconButton>
       </CardActions>

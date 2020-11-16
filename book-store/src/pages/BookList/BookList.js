@@ -1,5 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid'
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import Badge from '@material-ui/core/Badge';
 import TextField from '@material-ui/core/TextField';
 import {getBookList} from '../../api/books';
 import {BookCard} from '../../components/BookCard';
@@ -10,7 +12,8 @@ export class BookList extends React.Component {
   state = {
     books: [],
     booksFiltered: [],
-    filterValue: ''
+    filterValue: '',
+    cartItems: []
   }
 
   // constructor(props) {
@@ -47,14 +50,26 @@ export class BookList extends React.Component {
     })
   }
 
+  onCartClick = (book) => {
+    const {cartItems} = this.state;
+
+    this.setState({
+      cartItems: cartItems.concat(book)
+    })
+  }
+
   render() {
-    const {booksFiltered, filterValue} = this.state;
+    const {booksFiltered, filterValue, cartItems} = this.state;
 
     return (
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <TextField id="standard-basic" label="Filter Books" value={filterValue} onChange={this.onFilterChange}/>
           {/* <input type="text" value={filterValue} onChange={this.onFilterChange}></input> */}
+
+          <Badge badgeContent={cartItems.length} color="error">
+            <ShoppingCartIcon />
+          </Badge>
         </Grid>
         {
           booksFiltered.map(book => (
@@ -63,6 +78,7 @@ export class BookList extends React.Component {
                 key={book.id}
                 book={book}
                 className="book-list-item"
+                onCartClick={this.onCartClick}
               />
             </Grid>
           ))
