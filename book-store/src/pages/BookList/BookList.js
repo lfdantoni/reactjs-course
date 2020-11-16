@@ -7,19 +7,23 @@ import {BookCard} from '../../components/BookCard';
 import './book-list.css'
 
 export class BookList extends React.Component {
-  constructor(props) {
-    super(props);
+  state = {
+    books: [],
+    booksFiltered: [],
+    filterValue: ''
+  }
 
-    const books = getBookList();
+  // constructor(props) {
+  //   super(props);
 
-    this.state = {
-      books: books,
-      booksFiltered: books,
-      filterValue: ''
-    }
+  //   this.state = {
+  //     books: [],
+  //     booksFiltered: [],
+  //     filterValue: ''
+  //   }
 
     // this.onFilterChange = this.onFilterChange.bind(this);
-  }
+  // }
 
   onFilterChange = (event) => {
     console.log(event.target.value);
@@ -32,6 +36,15 @@ export class BookList extends React.Component {
       booksFiltered,
       filterValue: currentValue
     });
+  }
+
+  componentDidMount = () => {
+    const books = getBookList();
+
+    this.setState({
+      books,
+      booksFiltered: books
+    })
   }
 
   render() {
