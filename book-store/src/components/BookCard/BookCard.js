@@ -17,37 +17,43 @@ import { toPascalCase } from '../../utils/strings'
 import './book-card.css';
 
 
-export const BookCard = ({book, className, onCartClick}) => {
+// export const BookCard = ({book, className, onCartClick}) => {
+export class BookCard extends React.PureComponent {
 
-  return (
-    <Card className={`book-card ${className}`}>
-      <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className="book-card-avatar">
-            {book.title[0]}
-          </Avatar>
-        }
-        title={book.title}
-        subheader={toPascalCase(book.author)}
-      />
-      <CardMedia
-        className="book-card-image"
-        image={book.cover}
-        title="Paella dish"
-      />
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {book.description}
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share" onClick={() => onCartClick(book)}>
-          <ShoppingCartIcon />
-        </IconButton>
-      </CardActions>
-    </Card>
-  )
+  render() {
+    const {book, className, onCartClick} = this.props;
+    console.log('Update BookCard!');
+
+    return (
+      <Card className={`book-card ${className}`}>
+        <CardHeader
+          avatar={
+            <Avatar aria-label="recipe" className="book-card-avatar">
+              {book.title[0]}
+            </Avatar>
+          }
+          title={book.title}
+          subheader={toPascalCase(book.author)}
+        />
+        <CardMedia
+          className="book-card-image"
+          image={book.cover}
+          title="Paella dish"
+        />
+        <CardContent>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {book.description}
+          </Typography>
+        </CardContent>
+        <CardActions disableSpacing>
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon />
+          </IconButton>
+          <IconButton aria-label="share" onClick={() => onCartClick(book)}>
+            <ShoppingCartIcon />
+          </IconButton>
+        </CardActions>
+      </Card>
+    )
+  }
 }

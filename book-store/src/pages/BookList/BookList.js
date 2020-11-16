@@ -25,7 +25,7 @@ export class BookList extends React.Component {
   //     filterValue: ''
   //   }
 
-    // this.onFilterChange = this.onFilterChange.bind(this);
+  //  this.onFilterChange = this.onFilterChange.bind(this);
   // }
 
   onFilterChange = (event) => {
