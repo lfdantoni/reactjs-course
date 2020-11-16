@@ -8,7 +8,7 @@ import {BookCard} from '../../components/BookCard';
 
 import './book-list.css'
 
-export class BookList extends React.Component {
+export class BookList extends React.PureComponent {
   state = {
     books: [],
     booksFiltered: [],
@@ -53,8 +53,14 @@ export class BookList extends React.Component {
   onCartClick = (book) => {
     const {cartItems} = this.state;
 
+    // Children components have the same parent Pure component behaviour
+    // If a parent component is PureComponent and its child is Component
+    // the child one will not update every time
+    // cartItems.push(book);
+
     this.setState({
       cartItems: cartItems.concat(book)
+      // cartItems
     })
   }
 
