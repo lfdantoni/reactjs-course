@@ -1,9 +1,15 @@
 import React from 'react';
-import './header.css';
+import styles from './header.module.css';
+
+const inlineStyles = {
+  wrapper: {
+    height: '50px'
+  }
+}
 
 export const Header = () => {
-  return <div className="header-wrapper">
-    <div className="header">
+  return <div style={inlineStyles.wrapper}>
+    <div className={styles.header}>
       Header
     </div>
   </div>
