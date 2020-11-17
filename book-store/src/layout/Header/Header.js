@@ -1,4 +1,7 @@
 import React from 'react';
+import { Grid } from '@material-ui/core';
+import MatContainer from '@material-ui/core/Container';
+
 import styles from './header.module.css';
 
 const inlineStyles = {
@@ -10,7 +13,16 @@ const inlineStyles = {
 export const Header = () => {
   return <div style={inlineStyles.wrapper}>
     <div className={styles.header}>
-      Header
+      <MatContainer maxWidth="lg">
+        <Grid container spacing={0} className={styles['header-wrapper']} alignItems="center">
+          <Grid item xs={2}>
+            Link 1
+          </Grid>
+          <Grid item xs={2}>
+            Links
+          </Grid>
+        </Grid>
+      </MatContainer>
     </div>
   </div>
 }
