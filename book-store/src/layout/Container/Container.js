@@ -6,6 +6,7 @@ import { Footer } from '../Footer';
 import { Header } from '../Header';
 import { AddBook } from '../../pages/AddBook';
 import { NotFound } from '../../pages/NotFound';
+import { BookDetails } from '../../pages/BookDetails';
 
 import './container.css';
 
@@ -18,6 +19,7 @@ export const Container = () => {
         <Switch>
           <Route path="/add" component={AddBook} />
           <Route path="/" exact component={BookList} />
+          <Route path="/detail/:bookId" exact component={BookDetails} />
           <Route component={NotFound} />
         </Switch>
       </MatContainer>
