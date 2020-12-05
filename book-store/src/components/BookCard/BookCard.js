@@ -1,9 +1,10 @@
 import React from 'react'
 
-export const BookCard = (props) => {
+export const BookCard = ({book, onAddCartHandler}) => {
   return (
     <div>
-      BookCard {props.book.title}
+      BookCard {book.title}
+      <button onClick={() => onAddCartHandler(book)}>Add to Cart</button>
     </div>
   )
 }

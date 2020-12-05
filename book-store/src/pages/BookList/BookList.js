@@ -1,32 +1,55 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { BookCard } from '../../components/BookCard'
 import {getBookList} from '../../api/books'
 
-export class BookList extends React.Component {
+export class BookList extends React.PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
       books: [],
       booksFiltered: [],
-      filterValue: '', 
+      filterValue: '',
+      bookCart: [] 
     }
+
+    // this.addToCart = this.addToCart.bind(this);
+  }
+
+  componentDidMount() {
+    const books = getBookList();
+
+    this.setState({
+      books
+    })
+  }
+
+  addToCart = (book) => {
+    this.setState((state) => {
+      return {
+        bookCart: state.bookCart.concat(book)
+      } 
+    })
   }
 
   render() {
-    const books = getBookList();
+    const {books, bookCart} = this.state;
+    // const books = this.state.books;
 
     return (
-      <div>
-        {
-          books.map(book => (
+      <Fragment>
+        {bookCart.length}
+          {
+            books.map(book => (
             <BookCard
               key={book.id} 
               book={book}
+              onAddCartHandler={this.addToCart}
             />
           ))
-        }
-      </div>
+          }
+
+      </Fragment>
     )
   }
 }
