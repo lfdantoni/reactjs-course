@@ -17,8 +17,8 @@ export const Container = () => {
       
       <MatContainer maxWidth="lg" className="content">
         <Switch>
-          <Route path="/add" component={AddBook} />
           <Route path="/" exact component={BookList} />
+          <Route path="/add" component={AddBook} />
           <Route path="/detail/:bookId" exact component={BookDetails} />
           <Route component={NotFound} />
         </Switch>
