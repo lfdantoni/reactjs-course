@@ -19,6 +19,7 @@ export const Container = () => {
         <Switch>
           <Route path="/" exact component={BookList} />
           <Route path="/add" component={AddBook} />
+          {/* <Route path="/detail" component={BookList} /> */}
           <Route path="/detail/:bookId" exact component={BookDetails} />
           <Route component={NotFound} />
         </Switch>
