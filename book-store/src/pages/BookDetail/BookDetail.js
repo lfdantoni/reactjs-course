@@ -1,10 +1,10 @@
 import React from 'react'
 
-export const BookDetail = (props) => {
-  console.log('BookDetail', props)
+export const BookDetail = ({match}) => {
+  console.log('BookDetail', match)
   return (
     <div>
-      BookDetail
+      BookDetail {match.params.bookId}
     </div>
   )
 }
