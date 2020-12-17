@@ -1,15 +1,25 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { getBooks } from '../../actions/book'
+import { getBooks, getBooksFail, getBooksSuccess } from '../../actions/book'
 import { BookList } from './BookList';
+import { getBookList } from '../../api/books';
 
 class _BookListContainer extends PureComponent {
   componentDidMount() {
     this.props.getBooks();
+
+    setTimeout(
+      () => this.props.getBooksSuccess(getBookList()),
+      5000
+    )
   }
 
   render() {
     return (
+      this.props.loading ?
+
+      <div>LOADING...</div> :
+
       <BookList 
         books={this.props.books}
       />
@@ -19,13 +29,17 @@ class _BookListContainer extends PureComponent {
 
 const mapStateToProps = (state) => {
   return {
-    books: state.books
+    books: state.books.list,
+    loading: state.books.loading,
+    error: state.books.error
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getBooks: () =>{ dispatch(getBooks()) }
+    getBooks: () => dispatch(getBooks()),
+    getBooksSuccess: (books) => dispatch(getBooksSuccess(books)),
+    getBooksFail: (error) => dispatch(getBooksFail(error))
   }
 }
 

@@ -49,15 +49,6 @@ export class BookList extends React.PureComponent {
   //   })
   // }
 
-  componentDidUpdate(prevProps) {
-    if(prevProps.books !== this.props.books) {
-      this.setState({
-        booksFiltered: this.props.books,
-        filterValue: ''
-      })
-    }
-  }
-
   onCartClick = (book) => {
     const {cartItems} = this.state;
 
@@ -74,6 +65,9 @@ export class BookList extends React.PureComponent {
 
   render() {
     const {booksFiltered, filterValue, cartItems} = this.state;
+    const {books} = this.props;
+
+    const booksToList = filterValue ? booksFiltered : books;
 
     return (
       <Grid container spacing={3}>
@@ -86,7 +80,7 @@ export class BookList extends React.PureComponent {
           </Badge>
         </Grid>
         {
-          booksFiltered.map(book => (
+          booksToList.map(book => (
             <Grid key={book.id} item xs={12} md={6} lg={3}>
               <BookCard 
                 key={book.id}
