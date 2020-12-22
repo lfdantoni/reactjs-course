@@ -27,7 +27,9 @@ class _BookListContainer extends PureComponent {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, owns) => {
+
+  console.log(owns)
   return {
     books: state.books.list,
     loading: state.books.loading,
@@ -47,3 +49,15 @@ export const BookListContainer = connect(
   mapStateToProps,
   mapDispatchToProps
 )(_BookListContainer)
+
+/**
+ export const BookListContainer = connect(
+  null,
+  mapDispatchToProps
+)(_BookListContainer)
+
+
+ export const BookListContainer = connect(
+  mapStateToProps
+)(_BookListContainer)
+ */
