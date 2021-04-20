@@ -1,3 +1,4 @@
 # Commands
 
-* npm install --save-dev webpack@^4 webpack-cli@^3 webpack-dev-server
+* npm install --save-dev webpack webpack-cli
+* npm install --save-dev webpack-dev-server
