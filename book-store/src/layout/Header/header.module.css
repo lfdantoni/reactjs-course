@@ -1,0 +1,13 @@
+.header {
+  position: fixed;
+  height: 50px;
+  top: 0;
+  width: 100%;
+  background-color: #041721;
+  color: white;
+  z-index: 100;
+}
+
+.header-wrapper {
+  height: 50px;
+}
