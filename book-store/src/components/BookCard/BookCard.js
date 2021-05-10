@@ -2,10 +2,10 @@ import React from 'react'
 
 import './book-card.css'
 
-export const BookCard = () => {
+export const BookCard = (props) => {
   return (
     <div>
-      BookCard
+      BookCard {props.book.id}
     </div>
   )
 }
