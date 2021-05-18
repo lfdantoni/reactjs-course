@@ -52,6 +52,9 @@ export class BookList extends React.PureComponent {
     const {filterValue, booksFiltered} = this.state;
     // const books = getBookList();
 
+    // if(booksFiltered.length) booksFiltered.forEach(book => book.random = Date.now())
+    // const booksWithRandom = booksFiltered.map(book => ({...book, random: Date.now()}))
+
     return (
       <Grid container spacing={3}>
         <Grid item xs={12}>
