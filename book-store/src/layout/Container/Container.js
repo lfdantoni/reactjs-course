@@ -1,4 +1,5 @@
 import React from 'react'
+import MatContainer from '@material-ui/core/Container'
 import {Header} from '../Header'
 import {Footer} from '../Footer'
 import { BookList } from '../../pages/BookList'
@@ -9,8 +10,9 @@ export const Container = () => {
   return (
     <>
       <Header />
-      Container
-      <BookList />
+      <MatContainer maxWidth="lg" className="content">
+        <BookList />
+      </MatContainer>
       <Footer />
     </>
   )

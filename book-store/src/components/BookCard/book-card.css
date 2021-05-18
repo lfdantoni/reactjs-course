@@ -1,3 +1,13 @@
-div {
-  color: red;
+.book-card-avatar {
+  background-color: #f44336;
+}
+
+.book-card-image {
+  height: 0;
+  padding-top: 130%;
+}
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
 }

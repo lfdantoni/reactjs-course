@@ -4,8 +4,10 @@ import './footer.css'
 
 export const Footer = () => {
   return (
-    <div>
-      Footer
+    <div className="footer-wrapper">
+      <div className="footer">
+        Footer
+      </div>
     </div>
   )
 }

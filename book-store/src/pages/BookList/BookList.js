@@ -1,39 +1,56 @@
-import React from 'react'
-import { getBookList } from '../../api/books'
-import { BookCard } from '../../components/BookCard/BookCard'
+import React from 'react';
 import Grid from '@material-ui/core/Grid'
-import TextField from '@material-ui/core/TextField'
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import Badge from '@material-ui/core/Badge';
+import TextField from '@material-ui/core/TextField';
+import {getBookList} from '../../api/books';
+import {BookCard} from '../../components/BookCard';
 
-// export const BookList = () => {
-// export class BookList extends React.Component {
+import './book-list.css'
+
 export class BookList extends React.PureComponent {
   state = {
-    book: [],
+    books: [],
     booksFiltered: [],
     filterValue: '',
-    cartItems: [],
+    cartItems: []
   }
+
+  // constructor(props) {
+  //   super(props);
+
+  //   this.state = {
+  //     books: [],
+  //     booksFiltered: [],
+  //     filterValue: ''
+  //   }
+
+  //  this.onFilterChange = this.onFilterChange.bind(this);
+  // }
 
   onFilterChange = (event) => {
     console.log(event.target.value);
     const currentValue = event.target.value;
+    const {books} = this.state;
+
+    const booksFiltered = books.filter(book => book.title.toLowerCase().startsWith(currentValue.toLowerCase()));
 
     this.setState({
-      filterValue: currentValue,
-    })
+      booksFiltered,
+      filterValue: currentValue
+    });
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     const books = getBookList();
 
     this.setState({
       books,
-      booksFiltered: books,
+      booksFiltered: books
     })
   }
 
   onCartClick = (book) => {
-    console.log('cart clicked', book)
     const {cartItems} = this.state;
 
     // Children components have the same parent Pure component behaviour
@@ -48,24 +65,30 @@ export class BookList extends React.PureComponent {
   }
 
   render() {
-    // const book = {id: 75675}
-    const {filterValue, booksFiltered} = this.state;
-    // const books = getBookList();
-
-    // if(booksFiltered.length) booksFiltered.forEach(book => book.random = Date.now())
-    // const booksWithRandom = booksFiltered.map(book => ({...book, random: Date.now()}))
+    const {booksFiltered, filterValue, cartItems} = this.state;
 
     return (
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <TextField id="standard-basic" label="Filter Books" value={filterValue} onChange={this.onFilterChange}/>
           {/* <input type="text" value={filterValue} onChange={this.onFilterChange}></input> */}
+
+          <Badge badgeContent={cartItems.length} color="error">
+            <ShoppingCartIcon />
+          </Badge>
         </Grid>
-        {booksFiltered.map(book => (
-          <Grid key={book.id} item xs={12} md={6} lg={3}>
-            <BookCard key={book.id} book={book} onCartClick={this.onCartClick}/>
-          </Grid>
-        ))}
+        {
+          booksFiltered.map(book => (
+            <Grid key={book.id} item xs={12} md={6} lg={3}>
+              <BookCard 
+                key={book.id}
+                book={book}
+                className="book-list-item"
+                onCartClick={this.onCartClick}
+              />
+            </Grid>
+          ))
+        }
       </Grid>
     )
   }
