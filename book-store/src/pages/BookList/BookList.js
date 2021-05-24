@@ -3,14 +3,14 @@ import Grid from '@material-ui/core/Grid'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Badge from '@material-ui/core/Badge';
 import TextField from '@material-ui/core/TextField';
-import {getBookList} from '../../api/books';
+// import {getBookList} from '../../api/books';
 import {BookCard} from '../../components/BookCard';
 
 import './book-list.css'
 
 export class BookList extends React.PureComponent {
   state = {
-    books: [],
+    // books: [],
     booksFiltered: [],
     filterValue: '',
     cartItems: []
@@ -31,7 +31,8 @@ export class BookList extends React.PureComponent {
   onFilterChange = (event) => {
     console.log(event.target.value);
     const currentValue = event.target.value;
-    const {books} = this.state;
+    // const {books} = this.state;
+    const {books} = this.props;
 
     const booksFiltered = books.filter(book => book.title.toLowerCase().startsWith(currentValue.toLowerCase()));
 
@@ -41,14 +42,14 @@ export class BookList extends React.PureComponent {
     });
   }
 
-  componentDidMount = () => {
-    const books = getBookList();
+  // componentDidMount = () => {
+  //   const books = getBookList();
 
-    this.setState({
-      books,
-      booksFiltered: books
-    })
-  }
+  //   this.setState({
+  //     books,
+  //     booksFiltered: books
+  //   })
+  // }
 
   onCartClick = (book) => {
     const {cartItems} = this.state;
@@ -66,6 +67,9 @@ export class BookList extends React.PureComponent {
 
   render() {
     const {booksFiltered, filterValue, cartItems} = this.state;
+    const {books} = this.props;
+
+    const booksToList = filterValue ? booksFiltered : books;
 
     return (
       <Grid container spacing={3}>
@@ -78,7 +82,7 @@ export class BookList extends React.PureComponent {
           </Badge>
         </Grid>
         {
-          booksFiltered.map(book => (
+          booksToList.map(book => (
             <Grid key={book.id} item xs={12} md={6} lg={3}>
               <BookCard 
                 key={book.id}
